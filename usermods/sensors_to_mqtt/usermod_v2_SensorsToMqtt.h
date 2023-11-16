@@ -23,7 +23,7 @@ private:
   float SensorPressure = 0;
   float SensorTemperature = 0;
   float SensorHumidity = 0;
-  char *SensorIaq = "Unknown";
+  const char* SensorIaq = "Unknown";
   String mqttTemperatureTopic = "";
   String mqttHumidityTopic = "";
   String mqttPressureTopic = "";
@@ -198,23 +198,33 @@ private:
 
     if (iaq_index <= 6)
     {
-      return "Unhealty";
+      static char unhealthy[] = "Unhealty";
+      return unhealthy;
     }
     else if (iaq_index <= 9)
     {
-      return "Poor";
+      static char poor[] = "Poor";
+      return poor;
     }
     else if (iaq_index <= 12)
     {
-      return "Moderate";
+      static char moderate[] = "Moderate";
+      return moderate;
     }
     else if (iaq_index <= 14)
     {
-      return "Good";
+      static char good[] = "Good";
+      return good;
     }
     else if (iaq_index > 14)
+  
     {
-      return "Excellent";
+      static char excellent[] = "Excellent";
+      return excellent;
+    }
+    else {
+      static char unknown1[] = "Unknown";
+      return unknown1;
     }
   }
 
